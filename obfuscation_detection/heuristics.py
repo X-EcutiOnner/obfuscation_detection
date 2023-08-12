@@ -1,6 +1,7 @@
 from binaryninja import highlight
 
 from .utils import *
+from .loop_analysis import compute_number_of_loops
 
 
 def find_flattened_functions(bv):
@@ -112,6 +113,16 @@ def find_most_called_functions(bv):
     for f, score in get_top_10_functions(bv.functions, lambda f: len(f.callers)):
         print(
             f"Function {hex(f.start)} ({f.name}) is called from {score} different functions.")
+
+
+def find_loop_frequency_functions(bv):
+    print("=" * 80)
+    print("Loop Frequency")
+
+    # print top 10% (iterate in descending order)
+    for f, score in get_top_10_functions(bv.functions, compute_number_of_loops):
+        print(
+            f"Function {hex(f.start)} ({f.name}) contains {score} loops.")
 
 
 def find_xor_decryption_loops(bv):
