@@ -55,6 +55,12 @@ def find_loop_frequency_functions_bg(bv):
     background_task.start()
 
 
+def find_irreducible_loops_bg(bv):
+    background_task = BGTask(
+        bv, "Finding functions with irreducible loops", find_irreducible_loops)
+    background_task.start()
+
+
 def find_xor_decryption_loops_bg(bv):
     background_task = BGTask(
         bv, "Finding functions with xor decryption loops", find_xor_decryption_loops)
@@ -92,8 +98,11 @@ def detect_obfuscation(bv):
     # find most-called functions
     find_most_called_functions(bv)
 
-    # find iterative complex functions
-    find_iterative_complex_functions(bv)
+    # find functions with a high loop frequency
+    find_loop_frequency_functions(bv)
+
+    # find functions with irreducible loops
+    find_irreducible_loops_bg(bv)
 
     # find functions with xor decryption loops
     find_xor_decryption_loops(bv)

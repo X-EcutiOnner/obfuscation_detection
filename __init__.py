@@ -9,6 +9,7 @@ from .obfuscation_detection import (detect_obfuscation_bg,
                                     find_uncommon_instruction_sequences_bg,
                                     find_xor_decryption_loops_bg,
                                     find_loop_frequency_functions_bg,
+                                    find_irreducible_loops_bg,
                                     find_rc4_bg)
 
 PluginCommand.register("Obfuscation Detection\\All",
@@ -37,6 +38,9 @@ PluginCommand.register("Obfuscation Detection\\XOR Decryption Loops",
 
 PluginCommand.register("Obfuscation Detection\\Loop Frequency",
                        "Detect functions with a large number of loops", find_loop_frequency_functions_bg)
+
+PluginCommand.register("Obfuscation Detection\\Irreducible Loops",
+                       "Detect functions with irreducible loops", find_irreducible_loops_bg)
 
 PluginCommand.register("Obfuscation Detection\\Utils\\RC4 Implementations",
                        "Detect functions which potentially implement RC4 algorithms", find_rc4_bg)
